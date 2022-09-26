@@ -1,0 +1,15 @@
+const express = require("express")
+const route = express.Router()
+
+
+// dont forget here i can add two router brand and user!!
+//route.use("/api/users")
+//route.use("/api/brand")
+
+
+route.get("/",(req,res) => {
+    res.send("Api its working here now!!")
+})
+
+
+module.exports=route;
