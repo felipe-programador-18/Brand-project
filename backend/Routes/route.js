@@ -3,8 +3,8 @@ const route = express.Router()
 
 
 // dont forget here i can add two router brand and user!!
-//route.use("/api/users")
-//route.use("/api/brand")
+route.use("/api/users", require("./User") )
+route.use("/api/brand", require("./brand"))
 
 
 route.get("/",(req,res) => {
