@@ -7,7 +7,9 @@ const AddProduct = new Schema({
    price: Number,
    inventory: Number,
    category: String,
-   brand:String
+   brand:String,
+   userId: mongoose.ObjectId,
+   userName: String
 },{
     timestamps: true
 })
