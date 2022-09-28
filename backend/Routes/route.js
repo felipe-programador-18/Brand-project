@@ -8,7 +8,7 @@ route.use("/api/brand", require("./brand"))
 
 
 route.get("/",(req,res) => {
-    res.send("Api its working here now!!")
+    res.send("Api of product its working here now!!")
 })
 
 
