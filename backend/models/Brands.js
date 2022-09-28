@@ -2,7 +2,9 @@ const mongoose = require("mongoose")
 const {Schema} = mongoose;
 
 const newBrand =  new Schema({
-    name:String
+    name:String,
+    userId: mongoose.ObjectId,
+    userName: String
 },{
     timestamps: true
 })
