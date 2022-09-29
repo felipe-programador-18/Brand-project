@@ -24,13 +24,16 @@ const userValUser = () => {
         .withMessage("The confirmation of your email is obligatory.")
         .custom((value,{req}) => {
             if(value != req.body.password){
-              throw new Error('A senhas não são iguais !!')
+              throw new Error('the keys not are equals !')
             }
             return true;
         })
 
     ]
 }
+
+
+
 
 
 module.exports = {
