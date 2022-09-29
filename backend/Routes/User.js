@@ -9,7 +9,7 @@ const {userValUser } = require("../middware/user.validation")
 
 
 router.post("/register", userValUser() ,register)
-
+router.post("/login")
 
 
 
