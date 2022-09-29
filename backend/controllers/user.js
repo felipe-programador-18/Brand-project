@@ -49,10 +49,38 @@ const register = async (req,res) => {
     })
 }
 
+const login = async (req,res) => {
+  const{email,password} = req.body;
 
+  const user = await User.findOne({email})
+  console.log("verify my user logged", user)
+  
+  if(!user){
+    res
+   .status(404)
+   .json({errors:["User not found!"]})
+    return;
+  }
+  
+  if(!(await bcrypt.compare(password, user.password))){
+   res
+   .status(422)
+   .json({errors:["key invalid!"]})
+   return;
+  }
+  
+
+  res.status(201).json({
+    _id: user._id,
+    profileImage: user.profileImage,
+    token: generationToken(user._id)
+  })
+  
+}
 
 
 
 module.exports = {
-    register
+    register,
+    login
 }
