@@ -41,15 +41,13 @@ const register = async (req,res) => {
     return;
    }
   
-    res
-    .status(201)
-    .json({
+    res.status(201).json({
     _id: CreateUser._id ,
      token: generationToken(CreateUser._id)  
     })
 }
 
-const login = async (req,res) => {
+const loginControlled = async (req,res) => {
   const{email,password} = req.body;
 
   const user = await User.findOne({email})
@@ -79,8 +77,16 @@ const login = async (req,res) => {
 }
 
 
+// create function to get currently logged
+const getUserId= async (req,res) =>{
+  const user = await req.user
+  console.log("my user its here", user)
+  res.status(200).json(user)
+
+}
 
 module.exports = {
     register,
-    login
+    loginControlled,
+    getUserId
 }

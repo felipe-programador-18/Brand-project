@@ -1,11 +1,11 @@
-const  {body} = require("express-validator")
+const  { body } = require("express-validator")
 
 const userValUser = () => {
-    return [
-        body("name")
+    return [body("name")
         .isString()
         .withMessage("The name should be contained more than 5 letters.")
-        .isLength({min:6}),
+        .isLength({min:6})
+        .withMessage("your name needs to have more than 5 letters."),
 
         body("email")
         .isString()
@@ -32,10 +32,25 @@ const userValUser = () => {
     ]
 }
 
+const login = () => {
+   return [
+    body("email")
+    .isString()
+    .withMessage("Please fill this field with your email!!")
+    .isEmail()
+    .withMessage("Please insert a valid email."),
+
+    body("password")
+    .isString()
+    .withMessage("Please your key is obligatory.")   
+   ]
+}
+
 
 
 
 
 module.exports = {
-    userValUser
+    userValUser,
+    login
 }
