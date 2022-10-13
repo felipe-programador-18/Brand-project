@@ -2,23 +2,28 @@ const express = require("express")
 const router = express.Router()
 
 // controllers 
-const {register, loginControlled,getCurrentUser, updateUser} = require("../controllers/user")
+const {register,
+    loginControlled,
+    getCurrentUser,
+    updateUser} = require("../controllers/user")
 
 //middleware
 const validator = require("../middware/handlevalidator")
-const {userValUser, login,  } = require("../middware/user.validation")
-const {updateImage} = require("../middware/imageUpload")
+const {userValUser, 
+    login,
+    userUpdateValidation  } = require("../middware/user.validation")
 
-const authGuard = require("../middware/authGuard")
+const AuthGuard = require("../middware/authGuard")
+const {updateImage} = require("../middware/imageUpload")
 
 
 
 router.post("/register", userValUser(), validator ,register)
 router.post("/login",login(),validator, loginControlled)
 
-router.put("/", authGuard, userValUser(),validator,updateImage.single("profileImage"),updateUser)
+router.put("/", AuthGuard, userUpdateValidation(),validator,updateImage.single("profileImage"),updateUser)
 
-router.get("/profile", authGuard,getCurrentUser )
+router.get("/profile", AuthGuard,getCurrentUser )
 router.get("/:id", )
 
 
