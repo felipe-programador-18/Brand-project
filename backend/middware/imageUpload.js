@@ -24,7 +24,7 @@ const imageStory = multer.diskStorage({
 
 const updateImage = multer({
     storage: imageStory,
-    fileFilter: (req, file, cb) => {
+    fileFilter(req, file, cb){
      if(!file.originalname.match(/\.(png|jpg)$/)){
       
         //upload of jpg and png file
