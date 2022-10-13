@@ -5,7 +5,8 @@ const router = express.Router()
 const {register,
     loginControlled,
     getCurrentUser,
-    updateUser} = require("../controllers/user")
+    updateUser,
+    getUserById} = require("../controllers/user")
 
 //middleware
 const validator = require("../middware/handlevalidator")
@@ -24,7 +25,7 @@ router.post("/login",login(),validator, loginControlled)
 router.put("/", AuthGuard, userUpdateValidation(),validator,updateImage.single("profileImage"),updateUser)
 
 router.get("/profile", AuthGuard,getCurrentUser )
-router.get("/:id", )
+router.get("/:id" , getUserById)
 
 
 
