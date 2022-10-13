@@ -28,10 +28,6 @@ router.get("/:id", )
 
 
 
-
-
-
-
 router.use("/api/users/register",register)
 router.use("api/users/login", loginControlled)
 
