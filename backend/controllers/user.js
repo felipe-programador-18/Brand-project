@@ -95,7 +95,7 @@ const updateUser = async (req, res) => {
    }
    
    const reqUser = req.user
-   const user = await User.findOne(mongoose.Types.ObjectId(reqUser._id)).select("-password")
+   const user = await User.findById(mongoose.Types.ObjectId(reqUser._id)).select("-password")
    
    console.log("user backend here", user)
     
@@ -105,9 +105,9 @@ const updateUser = async (req, res) => {
    }
 
    if(password){
-    const salt = await bcrypt.genSalt();
-    const passwordHash = await bcrypt.hash(password,salt)
-    user.password = passwordHash
+    const salt = await bcrypt.genSalt()
+    const generatePassword = await bcrypt.hash(password, salt)
+    user.password = generatePassword
    }
 
    if(profileImage){
