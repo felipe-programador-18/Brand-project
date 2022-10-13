@@ -47,10 +47,25 @@ const login = () => {
 }
 
 
+const userUpdateValidation = () => {
+    return [
+     body("name")
+     .optional()
+     .isLength({min:6})
+     .withMessage("The name should be contained more than 5 letters."),
+     
+     body("password")
+     .optional()
+     .isLength({min:8})
+     .withMessage("Your key should be more than 7 letters or numbers.")
+    ]
+ }
+ 
 
 
 
 module.exports = {
     userValUser,
-    login
+    login,
+    userUpdateValidation
 }
