@@ -8,7 +8,7 @@ const imageStory = multer.diskStorage({
         
      if(req.baseUrl.includes("users")){
        folder ="users"
-     }else if(req.baseUrl.includes("produtos")){
+     }else if(req.baseUrl.includes("product")){
       folder ="produtos" 
      }
      
