@@ -28,6 +28,13 @@ const InsertPhotoProduct = async(req,res) =>{
 }
 
 
+// functionality to deleted product!!!
+
+const deletedProduct = async(req,res) => {
+
+}
+
 module.exports = {
-    InsertPhotoProduct
+    InsertPhotoProduct,
+    deletedProduct
 }
