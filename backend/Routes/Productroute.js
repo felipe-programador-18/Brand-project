@@ -3,7 +3,8 @@ const  router = express.Router()
 
 
 //controllers
-const {InsertPhotoProduct,deletedProduct} = require("../controllers/ProductPhoto")
+const {InsertPhotoProduct,
+    deletedProduct, getAllUserProduct} = require("../controllers/ProductPhoto")
 
 
 //middleware
@@ -20,7 +21,7 @@ validator,
 InsertPhotoProduct)
 
 router.delete("/:id", AuthGuard, deletedProduct)
-
+router.get("/",AuthGuard, getAllUserProduct)
 
 
 module.exports = router
