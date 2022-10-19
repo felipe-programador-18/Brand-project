@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 
 //insertUser Picture
 const InsertPhotoProduct = async(req,res) =>{
-   const{ name } = req.body
+   const{ name,describe, price, inventory, category, brand } = req.body
    const{ image } = req.file.filename
 
     const reqUser =req.user
@@ -13,6 +13,11 @@ const InsertPhotoProduct = async(req,res) =>{
 
     const newProduct = await ProductPhoto.create({
         name,
+        describe,
+        price,
+        inventory,
+        category,
+        brand,
         image,
         userId:user._id,
         userName: user.name 
@@ -27,9 +32,7 @@ const InsertPhotoProduct = async(req,res) =>{
     
 }
 
-
 // functionality to deleted product!!!
-
 const deletedProduct = async(req,res) => {
  
     const {id} = req.params;
@@ -44,7 +47,7 @@ const deletedProduct = async(req,res) => {
         return;
       }
        
-      if(!PhotoProduct.userId.equals(reqUser._id)){
+      if(!PhotoProduct.userId.equals(ReqUser._id)){
         res.status(422).json({errors:["not is possible deleted picture, you can try more later!"]})
       return;
       }
@@ -63,7 +66,16 @@ const deletedProduct = async(req,res) => {
 
 }
 
+const getAllUserProduct = async(req,res) => {
+ const photos = await ProductPhoto.find({})
+ .sort([["createdAt", -1]])
+ .exec();
+  res.status(200).json(photos) 
+}
+
+
 module.exports = {
     InsertPhotoProduct,
-    deletedProduct
+    deletedProduct,
+    getAllUserProduct
 }
