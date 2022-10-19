@@ -3,7 +3,7 @@ const  router = express.Router()
 
 
 //controllers
-const {InsertPhotoProduct} = require("../controllers/ProductPhoto")
+const {InsertPhotoProduct,deletedProduct} = require("../controllers/ProductPhoto")
 
 
 //middleware
@@ -19,7 +19,7 @@ photoInsertValidation(),
 validator,
 InsertPhotoProduct)
 
-router.delete("/", )
+router.delete("/:id", AuthGuard, deletedProduct)
 
 
 
