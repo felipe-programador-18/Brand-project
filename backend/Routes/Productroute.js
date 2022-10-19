@@ -19,6 +19,8 @@ photoInsertValidation(),
 validator,
 InsertPhotoProduct)
 
+router.delete("/", )
+
 
 
 module.exports = router

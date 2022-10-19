@@ -31,6 +31,35 @@ const InsertPhotoProduct = async(req,res) =>{
 // functionality to deleted product!!!
 
 const deletedProduct = async(req,res) => {
+ 
+    const {id} = req.params;
+    const ReqUser = req.user ;
+    console.log("my req user  here", ReqUser)
+     
+    try{
+      const PhotoProduct = await ProductPhoto.findById(mongoose.Types.ObjectId(id))
+     
+      if(!PhotoProduct){
+        res.status(404).json({errors:["picture not found."]})
+        return;
+      }
+       
+      if(!PhotoProduct.userId.equals(reqUser._id)){
+        res.status(422).json({errors:["not is possible deleted picture, you can try more later!"]})
+      return;
+      }
+      
+      await ProductPhoto.findByIdAndDelete(PhotoProduct._id)
+      
+      res.status(200).json({errors:["photo deleted with successfully!"]})
+
+
+    }catch(err){
+     
+        res.status(404).json({errors:["Happened issues it loading, you can try again more later!"]})
+        return;
+    }
+
 
 }
 
