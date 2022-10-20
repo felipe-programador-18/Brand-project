@@ -19,7 +19,15 @@ const photoInsertValidation = () => {
                 throw new Error("The picture is mandatory")            
             }
             return true;
-        })
+        }),
+
+        body("describe")
+        .not()
+        .equals("undefined")
+        .withMessage("The product need to a description")
+        .isString()
+        .isLength({min:10})
+        .withMessage("the description of product should be more than 10 letter")
     ]
 }
 
