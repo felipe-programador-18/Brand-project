@@ -1,6 +1,4 @@
 const {body} = require("express-validator")
-
-
 //create all structure to validate a photo!
 
 const photoInsertValidation = () => {
