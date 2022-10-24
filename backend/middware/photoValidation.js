@@ -32,7 +32,14 @@ const photoInsertValidation = () => {
         .equals("undefined")
         .withMessage("You need to add price in your product")
         .isNumeric()
-        .withMessage("You need to add just number.")
+        .withMessage("You need to add just number."),
+
+        body("inventory")
+        .not()
+        .equals("undefined")
+        .withMessage("Add product to your inventory")
+        .isNumeric()
+        .withMessage("you need to add just number to your product inventory")
         
     ]
 }
