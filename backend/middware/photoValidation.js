@@ -25,7 +25,15 @@ const photoInsertValidation = () => {
         .withMessage("The product need to a description")
         .isString()
         .isLength({min:10})
-        .withMessage("the description of product should be more than 10 letter")
+        .withMessage("the description of product should be more than 10 letter"),
+
+        body("price")
+        .not()
+        .equals("undefined")
+        .withMessage("You need to add price in your product")
+        .isNumeric()
+        .withMessage("You need to add just number.")
+        
     ]
 }
 

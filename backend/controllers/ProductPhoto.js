@@ -56,9 +56,7 @@ const deletedProduct = async(req,res) => {
       
       res.status(200).json({errors:["photo deleted with successfully!"]})
 
-
-    }catch(err){
-     
+    }catch(err){  
         res.status(404).json({errors:["Happened issues it loading, you can try again more later!"]})
         return;
     }
