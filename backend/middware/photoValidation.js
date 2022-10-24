@@ -39,8 +39,25 @@ const photoInsertValidation = () => {
         .equals("undefined")
         .withMessage("Add product to your inventory")
         .isNumeric()
-        .withMessage("you need to add just number to your product inventory")
-        
+        .withMessage("you need to add just number to your product inventory"),
+
+        body("category")
+        .not()
+        .equals("undefined")
+        .withMessage("you need to add a category of your product")
+        .isString()
+        .withMessage("you need to add a category of your product")
+        .isLength({min:6})
+        .withMessage("Category must have more than 5 letter"),
+
+        body("brand")
+        .not()
+        .equals()
+        .withMessage("You need to add a brand the product")
+        .isString()
+        .withMessage("you need to add a brand the product")
+        .isLength({min:6})
+        .withMessage("brand must have more than 5 letter")
     ]
 }
 
