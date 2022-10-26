@@ -57,7 +57,7 @@ const photoInsertValidation = () => {
         .isString()
         .withMessage("you need to add a brand the product")
         .isLength({min:6})
-        .withMessage("brand must have more than 5 letter")
+        .withMessage("brand must have more than 5 letter!")
     ]
 }
 
