@@ -71,9 +71,17 @@ const getAllUserProduct = async(req,res) => {
   res.status(200).json(photos) 
 }
 
+const getUserPhoto = async(req,res) => {
+  const photos = await ProductPhoto.find({userId: id})
+  .sort([["createdAt", -1]])
+  .exec()
+
+  return res.status(200).json(photos)
+}
 
 module.exports = {
     InsertPhotoProduct,
     deletedProduct,
-    getAllUserProduct
+    getAllUserProduct,
+    getUserPhoto
 }
