@@ -72,6 +72,9 @@ const getAllUserProduct = async(req,res) => {
 }
 
 const getUserPhoto = async(req,res) => {
+  
+  const {id} = req.params ;
+
   const photos = await ProductPhoto.find({userId: id})
   .sort([["createdAt", -1]])
   .exec()
