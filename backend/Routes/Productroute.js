@@ -6,7 +6,8 @@ const  router = express.Router()
 const {InsertPhotoProduct,
     deletedProduct, 
     getAllUserProduct,
-    getUserPhoto
+    getUserPhoto,
+    getUserId
 } = require("../controllers/ProductPhoto")
 
 
@@ -26,5 +27,9 @@ InsertPhotoProduct)
 router.delete("/:id", AuthGuard, deletedProduct)
 router.get("/",AuthGuard, getAllUserProduct)
 router.get("/user/:id" , AuthGuard, getUserPhoto)
+
+
+router.get("/:id", AuthGuard, getUserId)
+
 
 module.exports = router
