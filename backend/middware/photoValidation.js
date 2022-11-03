@@ -24,6 +24,7 @@ const photoInsertValidation = () => {
         .equals("undefined")
         .withMessage("The product need to a description")
         .isString()
+        .withMessage("you need to add product describe")
         .isLength({min:10})
         .withMessage("the description of product should be more than 10 letter"),
 
