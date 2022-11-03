@@ -1,17 +1,17 @@
-const ProductPhoto = require("../models/Product")
+const Product = require("../models/Product")
 const User = require("../models/user")
 const mongoose = require("mongoose")
 
 //insertUser Picture
 const InsertPhotoProduct = async(req,res) =>{
    const{ name,describe, price, inventory, category, brand } = req.body
-   const{ image } = req.file.filename
+   const image  = req.file.filename
 
     const reqUser =req.user
     const user = await User.findById(reqUser._id)
     console.log("Hi my user here!!!", user)
 
-    const newProduct = await ProductPhoto.create({
+    const newProduct = await Product.create({
         name,
         describe,
         price,
@@ -40,19 +40,19 @@ const deletedProduct = async(req,res) => {
     console.log("my req user  here", ReqUser)
      
     try{
-      const PhotoProduct = await ProductPhoto.findById(mongoose.Types.ObjectId(id))
+      const PhotoProduct = await Product.findById(mongoose.Types.ObjectId(id))
      
-      if(!PhotoProduct){
+      if(!Product){
         res.status(404).json({errors:["picture not found."]})
         return;
       }
        
-      if(!PhotoProduct.userId.equals(ReqUser._id)){
+      if(!Product.userId.equals(ReqUser._id)){
         res.status(422).json({errors:["not is possible deleted picture, you can try more later!"]})
       return;
       }
       
-      await ProductPhoto.findByIdAndDelete(PhotoProduct._id)
+      await Product.findByIdAndDelete(PhotoProduct._id)
       
       res.status(200).json({errors:["photo deleted with successfully!"]})
 
@@ -65,7 +65,7 @@ const deletedProduct = async(req,res) => {
 }
 
 const getAllUserProduct = async(req,res) => {
- const photos = await ProductPhoto.find({})
+ const photos = await Product.find({})
  .sort([["createdAt", -1]])
  .exec();
   res.status(200).json(photos) 
@@ -75,7 +75,7 @@ const getUserPhoto = async(req,res) => {
   
   const {id} = req.params ;
 
-  const photos = await ProductPhoto.find({userId: id})
+  const photos = await Product.find({userId: id})
   .sort([["createdAt", -1]])
   .exec()
 
@@ -87,7 +87,7 @@ const getUserId = async(req,res) => {
   const {id} = req.params ;
 
   try {
-    const photo = await ProductPhoto.findById(mongoose.Types.ObjectId(id)) 
+    const photo = await Product.findById(mongoose.Types.ObjectId(id)) 
      
     if(!photo){
       res.status(401).json({errors:["photo not found"]})
