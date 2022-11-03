@@ -87,14 +87,14 @@ const getUserId = async(req,res) => {
   const {id} = req.params ;
 
   try {
-    const photo = ProductPhoto.findById(mongoose.Types.ObjectId(id)) 
+    const photo = await ProductPhoto.findById(mongoose.Types.ObjectId(id)) 
      
     if(!photo){
       res.status(401).json({errors:["photo not found"]})
       return
     }
     
-    return  res.status(200).json(photo)
+    res.status(200).json(photo)
   } catch (error) {
     res.status(422).json({errors:["Happened issues it loading, you can try again more later!"]})
   }
