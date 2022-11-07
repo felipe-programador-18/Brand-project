@@ -101,10 +101,27 @@ const getUserId = async(req,res) => {
 
 }
 
+const UpdateProduct = async (req,res) => {
+  
+  const {id} = req.params;
+  const{name} = req.body;
+
+
+  try{
+
+  }catch{
+
+  }
+
+}
+
+
+
 module.exports = {
     InsertPhotoProduct,
     deletedProduct,
     getAllUserProduct,
     getUserPhoto,
-    getUserId
+    getUserId,
+    UpdateProduct
 }
