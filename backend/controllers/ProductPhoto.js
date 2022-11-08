@@ -65,21 +65,21 @@ const deletedProduct = async(req,res) => {
 }
 
 const getAllUserProduct = async(req,res) => {
- const photos = await Product.find({})
+ const PhotoProduct = await Product.find({})
  .sort([["createdAt", -1]])
  .exec();
-  res.status(200).json(photos) 
+  res.status(200).json(PhotoProduct) 
 }
 
 const getUserPhoto = async(req,res) => {
   
   const {id} = req.params ;
 
-  const photos = await Product.find({userId: id})
+  const PhotoProduct= await Product.find({userId: id})
   .sort([["createdAt", -1]])
   .exec()
 
-  return res.status(200).json(photos)
+  return res.status(200).json(PhotoProduct)
 }
 
 const getUserId = async(req,res) => {
@@ -87,14 +87,14 @@ const getUserId = async(req,res) => {
   const {id} = req.params ;
 
   try {
-    const photo = await Product.findById(mongoose.Types.ObjectId(id)) 
+    const PhotoProduct = await Product.findById(mongoose.Types.ObjectId(id)) 
      
-    if(!photo){
+    if(!PhotoProduct){
       res.status(401).json({errors:["photo not found"]})
       return
     }
     
-    res.status(200).json(photo)
+    res.status(200).json(PhotoProduct)
   } catch (error) {
     res.status(422).json({errors:["Happened issues it loading, you can try again more later!"]})
   }
@@ -105,14 +105,33 @@ const UpdateProduct = async (req,res) => {
   
   const {id} = req.params;
   const{name} = req.body;
+  
+  const reqUser = req.user
+  const PhotoProduct = await Product.findById(id)
+  console.log("testing my product here", PhotoProduct )
 
+  if(!PhotoProduct){
+     res
+     .status(404)
+     .json({errors:["not found product!"]})
+     return
+    }
+    
+//check if product belong user!!
+    if(!PhotoProduct.userId.equals(reqUser._id)){
+      res
+      .status(422)
+      .json({errors:["Happened issues it loading, you can try again more later!"]})
+    return;
+    }
 
-  try{
-
-  }catch{
-
-  }
-
+    if(title){
+      PhotoProduct.title = title
+    }
+    await PhotoProduct.save()
+    
+    res.status(200).json({ PhotoProduct, message:"photo update with success" })
+  
 }
 
 
