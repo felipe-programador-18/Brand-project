@@ -125,8 +125,8 @@ const UpdateProduct = async (req,res) => {
     return;
     }
 
-    if(title){
-      PhotoProduct.title = title
+    if(name){
+      PhotoProduct.name = name
     }
     await PhotoProduct.save()
     
