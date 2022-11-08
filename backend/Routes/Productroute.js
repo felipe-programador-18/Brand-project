@@ -7,12 +7,13 @@ const {InsertPhotoProduct,
     deletedProduct, 
     getAllUserProduct,
     getUserPhoto,
-    getUserId
+    getUserId,
+    UpdateProduct
 } = require("../controllers/ProductPhoto")
 
 
 //middleware
-const {photoInsertValidation} = require("../middware/photoValidation")
+const {photoInsertValidation,photoUpdateValidation } = require("../middware/photoValidation")
 const AuthGuard = require("../middware/authGuard")
 const validator = require("../middware/handlevalidator")
 
@@ -30,6 +31,6 @@ router.get("/user/:id" , AuthGuard, getUserPhoto)
 
 
 router.get("/:id", AuthGuard, getUserId)
-
+router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
 
 module.exports = router
