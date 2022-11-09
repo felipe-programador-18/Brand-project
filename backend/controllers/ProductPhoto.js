@@ -172,15 +172,19 @@ const LikeProduct = async (req,res) => {
 const CommentsProduct = async(req,res) =>{
   const {id} = req.params ;
   const {comment} = req.body;
+  
   const reqUser = req.user;
+   
+  const user = await  User.findById(reqUser._id)
+  const ProductPhoto = await Product.findById(id)
 
+  if(!ProductPhoto){
+    res.status(404).json({errors:["Product not exist"]})
+    return
+  }
    
 
-  try {
-    
-  } catch (error) {
-    
-  }
+  const 
 
 
 }
