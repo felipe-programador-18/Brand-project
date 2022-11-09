@@ -134,6 +134,42 @@ const UpdateProduct = async (req,res) => {
   
 }
 
+const LikeProduct = async (req,res) => {
+    
+   const{id} = req.params ;
+   const reqUser = req.user;
+
+   
+   try {
+     const PhotoProduct = await Product.findById(id) 
+     
+     if(!PhotoProduct){
+      res.status(404).json({errors:["not found product photo"]})
+      return
+     }
+
+     if(PhotoProduct.likes.includes(reqUser)){
+      res.status(422).json({errors:[" you have clicked on the product already"]})
+      return
+     }
+
+     PhotoProduct.likes.push(reqUser._id)
+     PhotoProduct.save()
+    
+    
+     res
+     .status(200)
+     .json({ productId:id, userId: reqUser._id, message:'The product was liked' })
+
+  } catch (error) {
+    res.status(422).json({errors:["Happened issues it loading, you can try again more later!"]})
+    return
+  }
+
+}
+
+
+
 
 
 module.exports = {
@@ -142,5 +178,6 @@ module.exports = {
     getAllUserProduct,
     getUserPhoto,
     getUserId,
-    UpdateProduct
+    UpdateProduct,
+    LikeProduct
 }
