@@ -169,6 +169,11 @@ const LikeProduct = async (req,res) => {
 }
 
 
+const CommentsProduct = async(req,res) =>{
+
+}
+
+
 
 
 
@@ -179,5 +184,6 @@ module.exports = {
     getUserPhoto,
     getUserId,
     UpdateProduct,
-    LikeProduct
+    LikeProduct,
+    CommentsProduct
 }

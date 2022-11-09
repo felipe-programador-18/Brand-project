@@ -8,7 +8,8 @@ const {InsertPhotoProduct,
     getAllUserProduct,
     getUserPhoto,
     getUserId,
-    UpdateProduct
+    UpdateProduct,
+    LikeProduct
 } = require("../controllers/ProductPhoto")
 
 
@@ -32,5 +33,9 @@ router.get("/user/:id" , AuthGuard, getUserPhoto)
 
 router.get("/:id", AuthGuard, getUserId)
 router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
+router.put("/like/:id",AuthGuard, LikeProduct)
+
+
+
 
 module.exports = router
