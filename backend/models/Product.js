@@ -9,6 +9,8 @@ const AddProduct = new Schema({
    inventory: Number,
    category: String,
    brand:String,
+   likes: Array,
+   comments: Array,
    userId: mongoose.ObjectId,
    userName: String
 },{
