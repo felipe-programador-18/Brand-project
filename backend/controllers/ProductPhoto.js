@@ -184,8 +184,17 @@ const CommentsProduct = async(req,res) =>{
   }
    
 
-  const 
+  const createComments = {
+    comment,
+    userName : user.name,
+    userImage: user.profileImage,
+    userId : user._id
+  }
+  
+  ProductPhoto.comments.push(createComments)
+  await ProductPhoto.save()
 
+  res.status(200).json({})
 
 }
 
