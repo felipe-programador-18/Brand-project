@@ -10,7 +10,8 @@ const {InsertPhotoProduct,
     getUserId,
     UpdateProduct,
     LikeProduct,
-    CommentsProduct
+    CommentsProduct,
+    searchProduct
 } = require("../controllers/ProductPhoto")
 
 
@@ -31,6 +32,7 @@ router.delete("/:id", AuthGuard, deletedProduct)
 router.get("/",AuthGuard, getAllUserProduct)
 router.get("/user/:id" , AuthGuard, getUserPhoto)
 
+router.get("/search",AuthGuard, searchProduct)
 
 router.get("/:id", AuthGuard, getUserId)
 router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
