@@ -9,7 +9,8 @@ const {InsertPhotoProduct,
     getUserPhoto,
     getUserId,
     UpdateProduct,
-    LikeProduct
+    LikeProduct,
+    CommentsProduct
 } = require("../controllers/ProductPhoto")
 
 
@@ -35,7 +36,7 @@ router.get("/:id", AuthGuard, getUserId)
 router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
 router.put("/like/:id",AuthGuard, LikeProduct)
 
-router.put("/comments/", validateComments())
+router.put("/comment/:id" ,AuthGuard, validateComments(), validator,CommentsProduct)
 
 
 
