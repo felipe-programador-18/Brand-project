@@ -192,7 +192,7 @@ const CommentsProduct = async(req,res) =>{
   ProductPhoto.comments.push(createComments)
   await ProductPhoto.save()
 
-  res.status(200).json({})
+  res.status(200).json({comment:createComments , message:"Comment add with success!"  })
 
 }
 
