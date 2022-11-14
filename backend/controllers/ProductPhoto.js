@@ -149,7 +149,7 @@ const LikeProduct = async (req,res) => {
      }
 
      if(PhotoProduct.likes.includes(reqUser._id)){
-      res.status(422).json({errors:[" you have clicked on the product already"]})
+      res.status(422).json({errors:["you have clicked on the product already"]})
       return
      }
 
