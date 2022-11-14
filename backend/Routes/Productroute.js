@@ -35,6 +35,7 @@ router.get("/:id", AuthGuard, getUserId)
 router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
 router.put("/like/:id",AuthGuard, LikeProduct)
 
+//router.put("/comments/")
 
 
 
