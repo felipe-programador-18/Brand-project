@@ -138,8 +138,6 @@ const LikeProduct = async (req,res) => {
     
    const{id} = req.params ;
    const reqUser = req.user;
-
-   
    try {
      const PhotoProduct = await Product.findById(id) 
      
