@@ -196,9 +196,15 @@ const CommentsProduct = async(req,res) =>{
 
 }
 
+const searchProduct = async(req,res) => {
+  const {q} = req.query ;
+  console.log('testing my search entails q',q)
+  const ProductPhoto = await Product.find(({title: new 
+     RegExp(q,'i')}).exec())
+   console.log('My Product here', ProductPhoto)
 
-
-
+  res.status(200).json(ProductPhoto); 
+}
 
 module.exports = {
     InsertPhotoProduct,
@@ -208,5 +214,6 @@ module.exports = {
     getUserId,
     UpdateProduct,
     LikeProduct,
-    CommentsProduct
+    CommentsProduct,
+    searchProduct
 }
