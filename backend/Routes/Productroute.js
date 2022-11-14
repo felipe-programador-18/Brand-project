@@ -14,7 +14,7 @@ const {InsertPhotoProduct,
 
 
 //middleware
-const {photoInsertValidation,photoUpdateValidation } = require("../middware/photoValidation")
+const {photoInsertValidation,photoUpdateValidation, validateComments } = require("../middware/photoValidation")
 const AuthGuard = require("../middware/authGuard")
 const validator = require("../middware/handlevalidator")
 
@@ -35,7 +35,7 @@ router.get("/:id", AuthGuard, getUserId)
 router.put("/:id",AuthGuard,photoUpdateValidation(), validator, UpdateProduct)
 router.put("/like/:id",AuthGuard, LikeProduct)
 
-//router.put("/comments/")
+router.put("/comments/", validateComments())
 
 
 
