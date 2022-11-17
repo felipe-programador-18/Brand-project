@@ -30,7 +30,7 @@ export const reqConfig = (method, data, token=null, image=null) => {
     }
     
     if(token){
-        
+        config.headers.Authorization = `Bearer ${token}`
     }
     
 }
