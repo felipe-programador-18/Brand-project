@@ -1,4 +1,4 @@
-export const Api = "http://localhost:5000/api"
+export const api = "http://localhost:5000/api"
 
 export const uploadsProducts = "http://localhost:5000/api"
 
