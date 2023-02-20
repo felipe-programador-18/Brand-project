@@ -47,8 +47,10 @@ const loginUser = async (data) => {
 
 
 
-module.exports={
+const  AuthService ={
     registerNew,
     loginUser,
     logoutUser, 
 }
+
+export default AuthService
