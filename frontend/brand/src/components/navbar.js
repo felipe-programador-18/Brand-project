@@ -1,4 +1,5 @@
 import React from 'react' 
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,7 +11,7 @@ import {NavLink} from 'react-router-dom'
 const NavOtherBar = () => {
 
     return (
-  <Navbar bg="light mx-4 "  expand="lg">
+  <Navbar bg="light mx-6 "  expand="lg">
    
       <Navbar.Brand href="#home">Brand-Project</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
