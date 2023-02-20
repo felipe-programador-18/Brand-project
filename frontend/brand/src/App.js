@@ -2,6 +2,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavOtherBar from './components/navbar';
+import Footer from './components/Footer'
+
 import LoginUser from './pages/Auth/Auth';
 
 function App() {
@@ -28,7 +30,8 @@ function App() {
       </Routes>
 
      </div>
-    
+      
+     <Footer/> 
      </BrowserRouter>
 
     </div>
