@@ -66,7 +66,6 @@ const loginControlled = async (req,res) => {
    .json({errors:["key invalid!"]})
    return;
   }
-  
 
   res.status(201).json({
     _id: user._id,
@@ -82,7 +81,7 @@ const getCurrentUser= async (req,res) =>{
   const user = await req.user
   console.log("my currently user its here", user)
   res.status(200).json(user)
-
+  
 }
 
 const updateUser = async (req, res) => {
