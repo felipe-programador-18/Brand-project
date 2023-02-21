@@ -1,31 +1,46 @@
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
+import Home from  './pages/Home/Home'
+
 import NavOtherBar from './components/navbar';
 import Footer from './components/Footer'
 
 import LoginUser from './pages/Auth/Auth';
 
+import  {UseAuth} from './hooks/Auth'
+import TestingSearch from './components/TestSearch';
+
+
 function App() {
+  const {auth, loading} = UseAuth()
+  console.log("Testing my Auth here", auth)
+
+  if(loading){
+    return <p>Loading .....</p>
+  }
+  
   return (
     <div className="App">
      <BrowserRouter> 
 
      <NavOtherBar/>
 
+
      <div className='container' >
 
       <Routes>
-        <Route path='/' element={''} />
+        <Route path='/' element={ auth ? <Home/> : 
+        <Navigate to='/login' />  } />
         
-        <Route path='/login' element={<LoginUser/>}  />
-        <Route path='/register' element={<LoginUser/>}  />
+        <Route path='/login' element={ auth ? <LoginUser/> : 
+        <Navigate to='/' />  }  />
+        
+        <Route path='/register' element={ auth ? <LoginUser/> : 
+        <Navigate to='/' />  }  />
         
         <Route path='/' element={<LoginUser/>}  />
         <Route path='/' element={<LoginUser/>}  />
-        <Route path='/' element={<LoginUser/>}  />
-
-
 
       </Routes>
 
