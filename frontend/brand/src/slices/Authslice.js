@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import AuthService from '../services/Authservice'
 
 
 const user = JSON.parse(localStorage.getItem("user"))
 
-const InitialState = {
+const  initialState = {
     user: user ? user:null,
     loading: false,
     error: false,
@@ -46,7 +45,7 @@ async(user, thunkAPI) => {
 
 export const authSlice = createSlice({
   name :"auth",
-  InitialState,
+  initialState,
   reducers:{
       reset: (state) =>{
           state.loading = false;
