@@ -2,28 +2,32 @@ import React, { useEffect, useState } from 'react'
 
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { login, reset } from '../../slices/Authslice' 
 
 
 const LoginUser = () => {
   
-   const [email, setEmail] = useState(null)
-   const [password, setPassword] = useState(null)
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
   
-  //const dispatch = useDispatch()  
-  
+   const {loading,error} = useSelector((state) => state.auth)
+   const dispatch = useDispatch()  
+    
   const HandleSubmit = (e) => {  
     e.preventDefault()
 
     const user = {
-
+     email,
+     password
     }
-    
+    console.log(user)
+    dispatch(login(user))
 
   }
 
   useEffect(() => {
-
-  },[])
+    dispatch(reset())
+  },[dispatch])
 
 
    return (<div className="row g-3 align-items-center my-2 " >
