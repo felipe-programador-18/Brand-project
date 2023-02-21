@@ -8,7 +8,7 @@ import { api, CreateAllRequest } from "../settings/utils";
     try {
      const response = await fetch(api + "/users/profile", refConfig  )
      .then((res) => res.json)
-     .err(err =>(err))   
+     .err((err) =>err)   
       return response;  
     } catch (error) {
         console.log(error)
