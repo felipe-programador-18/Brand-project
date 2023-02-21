@@ -2,24 +2,34 @@ import React, {useState, useEffect} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 
+import { reset, register } from '../../slices/Authslice'
+
 import Container from "react-bootstrap/Container"
 import { useNavigate } from 'react-router-dom'
 
 
 
 const RegisterUser = () =>{
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password,setPassword] = useState("")
+  const [confirmPassword, setConfirmPass] = useState("")
+
   
-
-
+  const dispatch = useDispatch()
+  const {loading, error} = useSelector((state) => state.auth)
   
    const HandleSubmit = (e) => {
     e.preventDefault()
    
     const user = {
-
+      name,
+      email,
+      password,
+      confirmPassword
     }
-
-
+    console.log('testing my user register here', user)
+    dispatch(register(user))
    }
   
   
