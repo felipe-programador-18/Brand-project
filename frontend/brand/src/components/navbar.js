@@ -1,23 +1,17 @@
-import {useState, useEffect} from 'react' 
+import {useState} from 'react' 
 import { useSelector, useDispatch } from 'react-redux';
 import  {useNavigate} from 'react-router-dom'
 
 import {UseAuth} from '../hooks/Auth'
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
-import  {BsSearch} from 'react-icons/bs'
 
 import {NavLink,Link} from 'react-router-dom'
-import {logout} from '../slices/Authslice'
+import {logout,reset} from '../slices/Authslice'
 
 const NavOtherBar = () => {
   
   const {auth} = UseAuth()
- // const {user} = useSelector((state) => state.auth)
+  const {user} = useSelector((state) => state.auth)
   
   const [query, setQuery] = useState("")
 
@@ -26,7 +20,7 @@ const NavOtherBar = () => {
   
   const HandleLogout = () => {
     dispatch(logout())
-    dispatch()
+    dispatch(reset())
     navigate("/login")
   }
 
@@ -44,32 +38,70 @@ const NavOtherBar = () => {
 
 
     return (
-  
-  <Navbar bg="light mx-6 "  expand="lg"> 
-      <Navbar.Brand href="home">Brand-Project</Navbar.Brand>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+  <div className="container-fluid">
+     
+     <Link className='text-decoration-none text-dark ' to='/' > BrandStore </Link>
+ 
+    
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
       
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          
-          <Nav.Link href='/home' >Home</Nav.Link>
-          <Nav.Link href="/login" >Sing-in</Nav.Link>
-         
-          <NavDropdown title="Information" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/about" >Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Product
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Users</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
+      
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      {auth?  ( <>  
+        <li className="nav-item">
+          <Link to='/' className="nav-link active" >Home</Link>
+        </li>
+        {user && (<>
+          <li>
+              <NavLink className="dropdown-item"  > 
+              User
+              </NavLink>
+            </li>  
+        
+        </>)}
+        <li>
+              <Link className="dropdown-item"  > 
+             Profile
+              </Link>
+        </li> 
+
+        <li>
+           <span onClick={HandleLogout} >Logout</span>
+        </li>
+      
+      </> ):  (<>
+         {" "}
+        
+        <li className="nav-item">
+          <Link className='nav-link' to='/login' >Sing-in </Link> 
+        </li>
+         <li>
+          <Link className='nav-link' to='/register' >Register</Link>
+         </li>
+      
+      </>
+      )}
+    </ul>    
+       
+  
+     
+      <form className="d-flex" role="search" onSubmit={HandleSearch} >
+        <input className="form-control me-2" 
+        type="search" 
+        placeholder="Search"
+        aria-label="Search" 
+        onChange={(e) => setQuery(e.target.value) }
+        />
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
    
-  </Navbar> 
+   
+   
+    </div>
+  </div>
+</nav>
+  
   
  
   )
