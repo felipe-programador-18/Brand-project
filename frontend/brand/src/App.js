@@ -33,10 +33,10 @@ function App() {
         <Route path='/' element={ auth ? <Home/> : 
         <Navigate to='/login' />  } />
         
-        <Route path='/login' element={ auth ? <LoginUser/> : 
+        <Route path='/login' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
         
-        <Route path='/register' element={ auth ? <LoginUser/> : 
+        <Route path='/register' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
         
         <Route path='/' element={<LoginUser/>}  />
