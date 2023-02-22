@@ -67,6 +67,8 @@ const LoginUser = () => {
     <span id="passwordHelpInline" className="form-text h1">
       Must be more than 7 characters long.
     </span>
+
+  
    
    </div>
   
