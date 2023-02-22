@@ -5,7 +5,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import { reset, register } from '../../slices/Authslice'
 
 import Container from "react-bootstrap/Container"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 
@@ -36,7 +36,7 @@ const RegisterUser = () =>{
   
   return (<Container>
      
-<form>
+<form onSubmit={HandleSubmit} >
    <div className="form-floating mb-3">
       <input
        type="text" 
@@ -104,6 +104,7 @@ const RegisterUser = () =>{
     <span id="passwordHelpInline" className="form-text h1">
       Must be more than 7 characters long.
     </span>
+    <p>Already Have account? <Link className='text-warning'  to='/login'>Click here</Link> </p>
    
    </div>
   
