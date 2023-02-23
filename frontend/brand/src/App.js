@@ -10,6 +10,7 @@ import LoginUser from './pages/Auth/Auth';
 
 import  {UseAuth} from './hooks/Auth'
 import TestingSearch from './components/TestSearch';
+import RegisterUser from './pages/Auth/Register';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
         <Route path='/login' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
         
-        <Route path='/register' element={ !auth ? <LoginUser/> : 
+        <Route path='/register' element={ !auth ? <RegisterUser/> : 
         <Navigate to='/' />  }  />
         
         <Route path='/' element={<LoginUser/>}  />
