@@ -6,9 +6,9 @@ const user = JSON.parse(localStorage.getItem("user"))
 
 const  initialState = {
     user: user ? user:null,
-    loading: false,
     error: false,
-    success: false
+    success: false,
+    loading: false,
 }
 
 
@@ -33,7 +33,7 @@ export const logout = createAsyncThunk("auth/logout", async() =>{
 export const login = createAsyncThunk("auth/login", 
 async(user, thunkAPI) => {
   
-  const data = await AuthService.login(user)
+  const data = await AuthService.loginUser(user)
 
   if(data.errors){
     return thunkAPI.rejectWithValue(data.errors[0])
