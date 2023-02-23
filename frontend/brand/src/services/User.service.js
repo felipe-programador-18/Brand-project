@@ -7,7 +7,7 @@ import { api, CreateAllRequest } from "../settings/utils";
   const refConfig = CreateAllRequest("GET", data, token)
     try {
      const response = await fetch(api + "/users/profile", refConfig  )
-     .then((res) => res.json)
+     .then((res) => res.json())
      .err((err) =>err)   
       return response;  
     } catch (error) {
