@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, reset } from '../../slices/Authslice' 
+import MessageError from '../../components/Message'
 
 
 const LoginUser = () => {
@@ -30,18 +31,21 @@ const LoginUser = () => {
   },[dispatch])
 
 
-   return (<div className="row g-3 align-items-center my-2 " >
+   return (<div className=" d-flex flex-column my-2 " >
 
-  <form>
+  <form onSubmit={HandleSubmit} >
    
-    <div className="form-floating mb-3">
+    <div className="form-floating m-auto mb-3 w-50">
       <input 
       type="text" 
       readonly 
-      className="form-control my-2 " 
+      className="form-control m-auto my-4 " 
       id="staticEmail"
       required 
-      placeholder="name@example.com"/>
+      placeholder="name@example.com"
+      value={email|| ""}
+      onChange={(e) => setEmail(e.target.value)}
+      />
       
       <label 
       for="floatingInput" 
@@ -50,27 +54,28 @@ const LoginUser = () => {
     
     </div> 
 
-   <div className="form-floating mb-3">
+   <div className="form-floating m-auto mb-3 w-50">
     <input 
     type="password" 
-    id="inputPassword6" 
-    className="form-control" 
-    aria-describedby="passwordHelpInline" 
-    placeholder='Password' />
+    className="form-control  m-auto" 
+    aria-describedby="passwordHelpInline"
+    value={password|| ""} 
+    placeholder='Password'
+    onChange={(e) => setPassword(e.target.value)}
+    />
    
     <label 
     for="floatingInput" 
-    id="floatingInput" 
+
     className="col-form-label"
     >Password</label>
-    
-    <span id="passwordHelpInline" className="form-text h1">
-      Must be more than 7 characters long.
-    </span>
-
-  
-   
+     
    </div>
+
+   {!loading && <input  className='m-auto w-25 text-center d-flex bg-dark text-light ' type='submit' value='Enter' /> }
+   {loading && <input className='m-auto d-flex btn-dark' type='submit' disabled  value='wait...' /> }
+
+   {error && <MessageError msg={error} type='error' /> }
   
   </form>
  
