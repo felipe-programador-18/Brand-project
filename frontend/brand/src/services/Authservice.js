@@ -28,10 +28,9 @@ const logoutUser =() => {
 
 const loginUser = async (data) => {
     const config = CreateAllRequest("POST", data)
-
     try {
      const res = await fetch(api + "/users/login", config)
-     .then((res) => res.json)
+     .then((res) => res.json())
      .err((err) => err)
       
      if(res._id){
