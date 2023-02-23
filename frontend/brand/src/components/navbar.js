@@ -39,6 +39,7 @@ const NavOtherBar = () => {
 
     return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
+  
   <div className="container-fluid">
      
      <Link className='text-decoration-none text-dark ' to='/' > BrandStore </Link>
