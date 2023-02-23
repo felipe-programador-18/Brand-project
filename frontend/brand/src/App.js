@@ -40,7 +40,8 @@ function App() {
         <Route path='/register' element={ !auth ? <RegisterUser/> : 
         <Navigate to='/' />  }  />
         
-        <Route path='/' element={<LoginUser/>}  />
+        <Route path='/' element={ <LoginUser/>}  />
+        
         <Route path='/' element={<LoginUser/>}  />
 
       </Routes>
