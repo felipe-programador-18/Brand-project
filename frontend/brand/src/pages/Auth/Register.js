@@ -34,8 +34,7 @@ const RegisterUser = () =>{
    }
   
   
-  
-  return (<Container className=" d-flex flex-column my-2 " >
+  return (<Container className=" d-flex flex-column my-2 bg-dark w-75 h-75 " >
      
 <form onSubmit={HandleSubmit} >
    
