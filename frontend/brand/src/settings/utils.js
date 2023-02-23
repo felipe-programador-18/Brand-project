@@ -1,6 +1,6 @@
 export const api = "http://localhost:5000/api"
 
-export const uploadsProducts = "http://localhost:5000/api"
+export const uploadsProducts = "http://localhost:5000/uploads"
 
 export const CreateAllRequest = (method, data, token=null , image=null ) => {
     let config;
