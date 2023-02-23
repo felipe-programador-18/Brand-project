@@ -8,7 +8,7 @@ import { api, CreateAllRequest } from "../settings/utils";
     try {
      const response = await fetch(api + "/users/profile", refConfig  )
      .then((res) => res.json())
-     .err((err) =>err)   
+     .catch((err) =>err)   
       return response;  
     } catch (error) {
         console.log(error)
@@ -21,7 +21,7 @@ const updateProfileUser = async (data, token) => {
   try {
     const res = await fetch(api + "/users/", refConfig)
     .then((res) => res.json())
-    .err((err) => err)
+    .catch((err) => err)
 
     return res;
   } catch (error) {
@@ -39,7 +39,7 @@ const  getUserById = async (id) => {
     try {
       const res = await fetch(api + "/users/" + id, refConfig)
       .then((res) => res.json())
-      .err((err) => err)
+      .catch((err) => err)
       return res ;
     } catch (error) {
         console.log(error)
