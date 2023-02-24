@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 
 //insertUser Picture
 const InsertPhotoProduct = async(req,res) =>{
-   const{ name,describe, price, inventory, category, brand } = req.body
+   const{ name,brand,describe, price, inventory, category, } = req.body
    const image  = req.file.filename
 
     const reqUser =req.user
