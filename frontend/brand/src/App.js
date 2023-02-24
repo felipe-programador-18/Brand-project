@@ -11,6 +11,7 @@ import LoginUser from './pages/Auth/Auth';
 import  {UseAuth} from './hooks/Auth'
 import TestingSearch from './components/TestSearch';
 import RegisterUser from './pages/Auth/Register';
+import EditProfile from './pages/EditUser/EditUserProfile';
 
 
 function App() {
@@ -34,13 +35,15 @@ function App() {
         <Route path='/' element={ auth ? <Home/> : 
         <Navigate to='/login' />  } />
         
+        <Route path='/profile' element={ !auth ? <EditProfile/> :
+         <Navigate to='/login' />}  />
+        
         <Route path='/login' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
         
         <Route path='/register' element={ !auth ? <RegisterUser/> : 
         <Navigate to='/' />  }  />
         
-        <Route path='/' element={ <LoginUser/>}  />
         
         <Route path='/' element={<LoginUser/>}  />
 
