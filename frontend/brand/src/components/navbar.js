@@ -5,6 +5,8 @@ import  {useNavigate} from 'react-router-dom'
 import {UseAuth} from '../hooks/Auth'
 
 
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import {NavLink,Link} from 'react-router-dom'
 import {logout,reset} from '../slices/Authslice'
 
@@ -51,25 +53,44 @@ const NavOtherBar = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
       {auth?  ( <>  
         <li className="nav-item">
-          <Link to='/' className="nav-link active" >Home</Link>
+          <Link to='/' className="nav-link active mx-2" >Home</Link>
         </li>
-        {user && (<>
-          <li>
-              <NavLink className="dropdown-item"  > 
+
+        {user && (<> 
+
+         <Dropdown className='mx-3'  >
+          <Dropdown.Toggle variant=" light btn-outline-success" id="dropdown-basic">
+           Brand Options
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu className='bg-light'>
+           <Dropdown.Item >
+           <li>
+              <NavLink className='text-decoration-none text-dark'  > 
               User
               </NavLink>
-            </li>  
+            </li> 
+           </Dropdown.Item>
+           <Dropdown.Item >
+             <li>
+              <Link className="text-decoration-none text-dark"  > 
+               Profile
+              </Link>
+             </li> 
+            
+            </Dropdown.Item>
+           <Dropdown.Item >
+           <li>
+           <span onClick={HandleLogout} >Logout</span>
+           </li>
+           </Dropdown.Item>
+         </Dropdown.Menu>
+         
+         </Dropdown>
+        
         
         </>)}
-        <li>
-              <Link className="dropdown-item"  > 
-             Profile
-              </Link>
-        </li> 
 
-        <li>
-           <span onClick={HandleLogout} >Logout</span>
-        </li>
       
       </> ):  (<>
          {" "}
