@@ -33,7 +33,7 @@ export const DeletedProduct = async (id, token) => {
 }
 
 //to getuserProduct
-export const getUserProductId = async (id,token) => {
+export const getProductUserId = async (id,token) => {
     const configReq = CreateAllRequest("GET",null, token)
     try {
      const res = await fetch(api + "/product/user/" + id, + configReq)
@@ -61,11 +61,25 @@ export const EditProduct = async (data, id, token) =>{
 
 }
 
+// to getuser id
 
+export const getUserId =  async(id,token) => {
+     
+    const configReq= CreateAllRequest("GET",null,token)
+    try {
+      const res = await fetch(api +"/product/"+id,configReq)
+      .then((res) =>res.json())
+      .catch((err) => err)
+      return res;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// to get all GetAll product
 export const getAllProduct = async(token) =>{
     
-    const configReq = CreateAllRequest("GET", null, token)
-    
+    const configReq = CreateAllRequest("GET", null, token)  
     try {
       const res = await fetch(api +"/product", configReq)
       .then((res) => res.json())
@@ -76,12 +90,63 @@ export const getAllProduct = async(token) =>{
     }
 }
 
+
+export const CommentProduct = async(data,id, token) => {
+
+  const configReq= CreateAllRequest("PUT", data,token)
+
+   try {
+    const res = await fetch(api+ '/product/comment/' +id, configReq)
+    .then((res) => res.json())
+    .catch((err) => err)
+    return res;
+   } catch (error) {
+     console.log(error)  
+   }
+
+
+}
+
+export const LikeProduct= async (id,token) => {
+
+    const configReq = CreateAllRequest("PUT",null, token)
+    try {
+     const res = await fetch(api + "/product/like/" +id, configReq)
+     .then((res) => res.json())
+     .catch((err) => err)
+     return res ;
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const SearchProduct = async (query, token) => {
+  const configReq = CreateAllRequest("GET",null, token)
+
+  try {
+    const res = await fetch(api+ "/product/search?q="+ query, configReq)
+    .then((res) => res.json())
+    .catch((err) => err)
+    return res;
+  } catch (error) {
+    console.log(error)
+  }
+
+
+}
+
+
 const ProductService = {
     publicProduct,
     DeletedProduct,
-    getUserProductId,
+    getProductUserId,
     EditProduct,
-    getAllProduct 
+    getAllProduct,
+    CommentProduct,
+    LikeProduct,
+    getUserId,
+    SearchProduct  
 }
 
 export default ProductService
