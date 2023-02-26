@@ -145,9 +145,12 @@ export const ProductSlice = createSlice({
         state.loading= false;
         state.error = false;
         state.success= true;
-        state.message='Product deleted with success'
-        
-      } ) 
+        state.products = action.payload
+      })
+      builder.addCase(DeletedProduct.rejected, (state, action) => {
+        state.loading = false ;
+        state.error= action.payload;
+      }) 
 
     }
 })
