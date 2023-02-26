@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import Container from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
 
 import { resetMessage, UpdateProfile, Profile } from '../../slices/Userslice'
 
@@ -126,6 +126,10 @@ const EditProfile = () => {
              onChange={(e) => setPassword(e.target.value)}
              />
         </label>
+
+        <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger">
+                   Dangerous heading
+        </div>
 
 
         {loading && <input type='submit' value='Update...'  /> }
