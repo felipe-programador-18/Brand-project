@@ -12,6 +12,7 @@ import  {UseAuth} from './hooks/Auth'
 import TestingSearch from './components/TestSearch';
 import RegisterUser from './pages/Auth/Register';
 import EditProfile from './pages/EditUser/EditUserProfile';
+import ProfileUser from './pages/Profile/ProfileUser';
 
 
 function App() {
@@ -35,8 +36,11 @@ function App() {
         <Route path='/' element={ auth ? <Home/> : 
         <Navigate to='/login' />  } />
         
-        <Route path='/profile' element={ !auth ? <EditProfile/> :
+        <Route path='/profile' element={ auth ? <EditProfile/> :
          <Navigate to='/login' />}  />
+        
+        <Route path='/' element={auth ?<ProfileUser/> : 
+        <Navigate to='/users/:id' />}     />
         
         <Route path='/login' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
