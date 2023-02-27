@@ -73,7 +73,7 @@ const NavOtherBar = () => {
            </Dropdown.Item>
            <Dropdown.Item >
              <li>
-              <Link className="text-decoration-none text-dark"  > 
+              <Link to='/profile' className="text-decoration-none text-dark"  > 
                Profile
               </Link>
              </li> 
