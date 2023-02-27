@@ -6,8 +6,8 @@ const initialState = {
     loading: null,
     error: false,
     success:false,
-    products:{},
-    product:[],
+    products:[],
+    product:{},
     message:null
 }
 
@@ -124,7 +124,7 @@ export const ProductSlice = createSlice({
         state.loading = true;
         state.error = false
       })
-      builder.addCase(PublicProduct.fulfilled, (state, action) => {
+      .addCase(PublicProduct.fulfilled, (state, action) => {
         state.loading= false;
         state.error = null ;
         state.success= true;
@@ -132,24 +132,38 @@ export const ProductSlice = createSlice({
         state.products.unshift(state.product)
         state.message = "Product it updated with success!"
       })
-      builder.addCase(PublicProduct.rejected, (state, action) => {
+      .addCase(PublicProduct.rejected, (state, action) => {
         state.loading= false;
         state.error = action.payload;
         state.product = {}
       })
-      builder.addCase(DeletedProduct.pending, (state) => {
+      .addCase(DeletedProduct.pending, (state) => {
         state.loading= true;
         state.error= false;
       })
-      builder.addCase(DeletedProduct.fulfilled, (state, action) => {
+      .addCase(DeletedProduct.fulfilled, (state, action) => {
         state.loading= false;
-        state.error = false;
+        state.error = null;
         state.success= true;
-        state.products = action.payload
+        // to pay attention about this
+        state.products = state.products.filter((product) => {
+          return product._id !== action.payload.id
+        })
+        state.message= action.payload.message ;
       })
-      builder.addCase(DeletedProduct.rejected, (state, action) => {
+      .addCase(DeletedProduct.rejected, (state, action) => {
         state.loading = false ;
         state.error= action.payload;
+        state.product ={};
+      })
+      .addCase(getProductUser.pending, (state) => {
+         state.loading = true;
+         state.error = null;
+      })
+      .addCase(getProductUser.fulfilled, (state,action) => {
+        state.loading = false;
+        state.error =false ;
+        state.success = true ;
       }) 
 
     }
