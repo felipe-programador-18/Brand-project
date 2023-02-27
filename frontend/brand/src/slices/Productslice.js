@@ -110,7 +110,7 @@ async(id, thunkAPI) => {
 })
 
 
-export const ProductSlice = createSlice({
+export const productSlice = createSlice({
     name:"product",
     initialState,
     reducers: {
@@ -163,8 +163,94 @@ export const ProductSlice = createSlice({
       .addCase(getProductUser.fulfilled, (state,action) => {
         state.loading = false;
         state.error =false ;
-        state.success = true ;
+        state.success = true;
+        state.products = action.payload;
       }) 
-
+      .addCase(EditProductBrand.pending, (state) =>{
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(EditProductBrand.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.success = true;
+        state.products.map((product) => {
+          if(product._id === action.payload.product.id){
+           return product.title = action.payload.product.title
+          }
+          return product
+        })
+        state.message = action.payload.message;
+      })
+      .addCase(EditProductBrand.rejected, (state,action) => {
+         state.loading = false;
+         state.error = action.payload;
+         state.product = {}
+      })
+      .addCase(getUserProductId.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserProductId.fulfilled, (state,action) => {
+        state.loading = false;
+        state.error = false;
+        state.message = true;
+        state.product = action.payload; 
+      })
+      .addCase(CommentProduct.fulfilled, (state, action) => {
+        state.loading = false ;
+        state.error = null;
+        state.success =true;
+        state.product.comments.push(action.payload.comment)
+        state.message = action.payload.message;
+      })
+      .addCase(CommentProduct.rejected, (state,action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(LikeProduct.fulfilled, (state,action) => {
+        state.loading = false ;
+        state.error = null;
+        state.success = true;
+        state.message = action.payload.message;
+        
+        if(state.product.likes){
+          state.product.likes.push(action.payload.userId)
+         }
+        
+         state.products.map((product) => {
+          if(product._id === action.payload.productId){
+             return product.likes.push(action.payload.userId)  
+             }
+             return product;
+         })
+      })
+      .addCase(LikeProduct.rejected,(state,action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getAllProduct.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getAllProduct.fulfilled, (state,action) => {
+        state.loading = false;
+        state.error = null;
+        state.success = true;
+        state.products =action.payload;
+      })
+      .addCase(SearchProduct.pending, (state) => {
+        state.loading= true;
+        state.error = false;
+      })
+      .addCase(SearchProduct.fulfilled, (state,action) => {
+        state.loading = false;
+        state.error = null;
+        state.success= true;
+        state.products = action.payload;
+      })
     }
 })
+
+export const {reset} = productSlice.actions;
+export default productSlice.reducer;
