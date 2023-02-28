@@ -39,8 +39,8 @@ function App() {
         <Route path='/profile' element={ auth ? <EditProfile/> :
          <Navigate to='/login' />}  />
         
-        <Route path='/' element={auth ?<ProfileUser/> : 
-        <Navigate to='/users/:id' />}     />
+        <Route path='/users/:id' element={auth ?<ProfileUser/> : 
+        <Navigate to='/login' />}     />
         
         <Route path='/login' element={ !auth ? <LoginUser/> : 
         <Navigate to='/' />  }  />
