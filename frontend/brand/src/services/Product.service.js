@@ -36,7 +36,7 @@ export const DeletedProduct = async (id, token) => {
 export const getProductUserId = async (id,token) => {
     const configReq = CreateAllRequest("GET",null, token)
     try {
-     const res = await fetch(api + "/product/user/" + id, + configReq)
+     const res = await fetch(api + "/product/user/" + id, configReq)
      .then((res) => res.json())
      .catch((err) => err)
      return res;
