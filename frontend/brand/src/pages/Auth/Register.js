@@ -34,7 +34,7 @@ const RegisterUser = () =>{
    }
   
   
-  return (<Container className=" d-flex flex-column my-2 bg-dark w-75 h-75 " >
+  return (<Container className=" d-flex flex-column my-2 bg-light text-opacity-25 w-75 h-75 " >
      
 <form onSubmit={HandleSubmit} >
    
@@ -42,8 +42,7 @@ const RegisterUser = () =>{
       <input
        type="text"
        required 
-       className="form-control my-2 " 
-       id="staticEmail"
+       className="form-control my-2" 
        value={name || ""}
        placeholder="your name"
        onChange={(e) => setName(e.target.value)}
@@ -109,17 +108,22 @@ const RegisterUser = () =>{
     id="floatingInput" 
     className="col-form-label"
     >Confirm your Password</label>
+     
+    <div class="h4 pb-2 mb-2 text-dark border-bottom border-dark">
+    </div>
     
-    <p className='my-2' >Already Have account? <Link className='text-light  text-decoration-none '  to='/login'>Click here</Link> </p>
+    <p className='my-2' >Already Have account? <Link className='text-success  text-decoration-none '  to='/login'>Click here</Link> </p>
    </div>
 
 
-   {!loading && <input className='text-center m-auto d-flex bg-dark' type='submit' value='Register' /> }
+   {!loading && <input className='text-center m-auto d-flex bg-success text-light' type='submit' value='Register' /> }
    {loading && (<input className='text-center m-auto d-flex bg-dark' type='submit' disabled value='Wait...' />)}
 
    {error && <MessageError msg={error} type='error' />  }
   
   </form> 
+
+  
 
 </Container>)
 
