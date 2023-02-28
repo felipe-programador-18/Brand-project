@@ -75,16 +75,18 @@ const EditProfile = () => {
     }
     
  
-    return(<Container className='text-center' >
-     <h2>Edit your Date</h2>
+    return(<Container className='d-flex  flex-column m-auto ' >
+     <h2>Edit your Dates.</h2>
+     <p className='text-capitalize' >Adding a picture and tell a more about yourself.</p>
   
     {(user.profileImage|| user.previewImage) && (
-        <img className='rounded-circle w-25 h-25 ' src={ previewImage? URL.createObjectURL(previewImage): 
+        <img className=' text-center rounded-circle w-25 h-25 ' src={ previewImage? URL.createObjectURL(previewImage): 
           `${uploadsProducts}/users/${user.profileImage}`}
         alt={user.name} />
     )}
    
-   
+   <div class="h4 pb-2 mb-4 text-danger border-bottom border-dark">
+   </div>
    
    <form onSubmit={HandleSubmit} >
    <input type="text"
@@ -100,12 +102,14 @@ const EditProfile = () => {
        onChange ={(e) => setEmail(e.target.value)}
        />  
 
-       <label>
-         <span>Profile Image:</span>
-         <input type="file" 
-         onChange={HandleFile}
-         /> 
-       </label>    
+
+
+         <div class="mb-3">
+          <label for="formFile" class="form-label">
+            <span>Profile Image:</span>
+          </label>
+          <input class="form-control" type="file" onChange={HandleFile} />
+        </div>    
 
        <label>
         <span>Bio:</span>
@@ -132,8 +136,8 @@ const EditProfile = () => {
         </div>
 
 
-        {loading && <input type='submit' value='Update...'  /> }
-        {!loading && (<input  type='submit' disabled value='Wait..'  />)  }
+        {!loading && <input type='submit' value='Update'  /> }
+        {loading && (<input  type='submit' disabled value='Wait..'  />)  }
 
         {error && <MessageError  type='error' msg={error}/> } 
         
@@ -142,9 +146,30 @@ const EditProfile = () => {
    </form>
 
 
+  <div class="mb-3">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile"/>
+</div>
+<div class="mb-3">
+  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple/>
+</div>
+<div class="mb-3">
+  <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+  <input class="form-control" type="file" id="formFileDisabled" disabled/>
+</div>
+<div class="mb-3">
+  <label for="formFileSm" class="form-label">Small file input example</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file"/>
+</div>
+<div>
+  <label for="formFileLg" class="form-label">Large file input example</label>
+  <input class="form-control form-control-lg" id="formFileLg" type="file"/>
+</div>
 
 
-    </Container>)
+
+    </Container >)
 
 }
 
