@@ -162,7 +162,7 @@ export const productSlice = createSlice({
       })
       .addCase(getProductUser.fulfilled, (state,action) => {
         state.loading = false;
-        state.error =false ;
+        state.error =null ;
         state.success = true;
         state.products = action.payload;
       }) 
