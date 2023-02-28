@@ -252,5 +252,5 @@ export const productSlice = createSlice({
     }
 })
 
-export const {reset} = productSlice.actions;
+export const {resetMessage} = productSlice.actions;
 export default productSlice.reducer;
