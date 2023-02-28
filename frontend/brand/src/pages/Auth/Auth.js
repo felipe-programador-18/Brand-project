@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { login, reset } from '../../slices/Authslice' 
 import MessageError from '../../components/Message'
 
+import Container from 'react-bootstrap/esm/Container'
 
 const LoginUser = () => {
   
@@ -31,15 +32,15 @@ const LoginUser = () => {
   },[dispatch])
 
 
-   return (<div className=" d-flex flex-column my-2 " >
+   return (<Container className="d-flex p-0 m-0 flex-column my-2 bg-light top-4" >
 
   <form onSubmit={HandleSubmit} >
    
-    <div className="form-floating m-auto mb-3 w-50">
+    <div className="form-floating m-auto my-2 mb-3 w-50">
       <input 
       type="text" 
       readonly 
-      className="form-control m-auto my-4 " 
+      className="form-control my-4 " 
       id="staticEmail"
       required 
       placeholder="name@example.com"
@@ -57,7 +58,7 @@ const LoginUser = () => {
    <div className="form-floating m-auto mb-3 w-50">
     <input 
     type="password" 
-    className="form-control  m-auto" 
+    className="form-control" 
     aria-describedby="passwordHelpInline"
     value={password|| ""} 
     placeholder='Password'
@@ -72,15 +73,15 @@ const LoginUser = () => {
      
    </div>
 
-   {!loading && <input  className='m-auto w-25 text-center d-flex bg-dark text-light ' type='submit' value='Enter' /> }
+   {!loading && <input  className='text-center m-auto d-flex bg-success text-light' type='submit' value='Enter' /> }
    {loading && <input className='m-auto d-flex btn-dark' type='submit' disabled  value='wait...' /> }
 
    {error && <MessageError msg={error} type='error' /> }
   
   </form>
+  
  
- 
- </div>
+ </Container>
   )
 }
 
