@@ -130,8 +130,6 @@ const getUserById = async (req, res) => {
  
   const {id} = req.params ;
   console.log("what I have here?", id)
-
-
   try {
     const user = await User.findById(mongoose.Types.ObjectId(id)).select("-password")
      
