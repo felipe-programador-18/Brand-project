@@ -3,6 +3,7 @@ import {Link, useParams} from  'react-router-dom'
 
 import { uploadsProducts } from '../../settings/utils'
 import MessageError from '../../components/Message'
+import { BsFillEyeFill, BsPencilFill, BsXLg } from 'react-icons/bs'
 
 import {resetMessage, 
   PublicProduct,
@@ -11,7 +12,6 @@ import {resetMessage,
   DeletedProduct}  from "../../slices/Productslice"
 
 import {useDispatch, useSelector} from 'react-redux'
-
 import { GetUserBy } from '../../slices/Userslice'
 
 import Container from 'react-bootstrap/Container'
@@ -31,9 +31,14 @@ const ProfileUser = () => {
   error: errorProduct
  } = useSelector((state) => state.product)
 
+ console.log("testing product here", product)
 
- const [title, setTitle] = useState("")
+ const [name, setName] = useState("")
  const [image, setImage] = useState("")
+ const [describe, setDescribe] = useState("")
+ const [price, setPrice] = useState(0)
+ const [ category, setCategory] = useState("")
+ const [inventory, setInventory] = useState(0)
  
  const [editId, setEditId] = useState("")
  const[editImage, setEditImage] = useState("")
@@ -61,7 +66,7 @@ useEffect(() => {
  const HandleSubmit = (e) => {
   e.preventDefault()
   const photoData = {
-   title, 
+   name, 
    image
   }
 
@@ -72,7 +77,7 @@ useEffect(() => {
 
   ProductDate.append("product", ProductformDate)
   dispatch(PublicProduct(ProductDate))
-  setTitle("")
+  setName("")
   
   resetComponent()
 }
@@ -113,7 +118,7 @@ const HandEdit = (product) => {
   }
 
   setEditId(product._id)
-  setEditTitle(product.title)
+  setEditTitle(product.name)
   setEditImage(product.image)
  }
  
@@ -140,7 +145,7 @@ return ( <div className='text-center' >
   </div>
 
  
- {id === userAuth._id && (<div className='' >
+ {id === userAuth._id && (<> 
 
  <div ref={ProductUser} >  
    <form onSubmit={HandleSubmit} >
@@ -154,9 +159,9 @@ return ( <div className='text-center' >
     <span class="badge badge-light">Title Of The Product</span>
      <input 
       type="text"  
-      value={title | ""}
+      value={name | ""}
       required
-      onChange={(e) => setTitle(e.target.value)}
+      onChange={(e) => setName(e.target.value)}
       placeholder='Insert a Title...'
      />
      </label>
@@ -185,69 +190,49 @@ return ( <div className='text-center' >
      </>)}
 
 
-     <form>
-      <input type="text" />
-      <input type='text' />
+     <form onSubmit={HandMyUpdate} >
+      <input type="text" 
+       className='text-capitalize'
+       placeholder="edit your title:"
+       value ={editTitle || ""}
+       onChange={(e) => setEditTitle(e.target.value)}
+      />
+      <input type='text' value='update....' />
+      <button onClick={HandCanEdit} className='btn text-capitalize btn-dark text-light' >
+       Cancel Edit
+      </button>
+      </form>
+      {errorProduct && <MessageError type='error' msg={errorProduct} />} 
+      {messageProduct && <MessageError type='success' msg={messageProduct} />}
+  </div>
+ 
+ </>)}
 
-     </form>
-   
-   </div>
+    <div className='' >
+      <h1>Product Created!</h1>
+       <div>
+        {product && product.map((products) => (
+          <div key={products._id} >
 
-  
+            {product.image && (
+              <img src={`${uploadsProducts}/product/${product.image}`} alt={product.name} />
+            )}
 
+            {id === userAuth._id ? (<div>
+                 <Link to={`/photos/${product._id}`} >
+                   <BsFillEyeFill/>  
+                
+                 </Link> 
+                   <BsPencilFill onClick={() => HandEdit(product) } />
+                   <BsXLg onClick={() => HandleDeleted(product._id) } />
+            
+            </div>): (<Link className='btn' to={`/photos/${product._id}`} >See.</Link> )}
+          </div>
+        )) }
 
-
-
-
-
-
-
-
-
-
- </div>)}
- <form onSubmit={HandleSubmit} >
-  
-  
-  <label>
-    <input type="text" />
-  </label>
-
-  
-  <label>
-  <span class="badge badge-light">Title Of The Picture</span>
-    <input 
-     type="text"  
-     value={title | ""}
-     required
-     onChange={(e) => setTitle(e.target.value)}
-     placeholder='Insert a Title...'
-     />
-  </label>
-  
-  <label>
-    <input type="text" />
-  </label>
-  
-  <label>
-    <input type="text" />
-  </label>
-
-
-  </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
+      {product.length === 0 && <p className='text-capitalize' >anyone picture here.</p> }
+       </div>
+    </div>
 </div>)
 }
 
