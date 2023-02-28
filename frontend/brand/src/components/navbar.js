@@ -66,7 +66,7 @@ const NavOtherBar = () => {
           <Dropdown.Menu className='bg-light'>
            <Dropdown.Item >
            <li>
-              <NavLink className='text-decoration-none text-dark'  > 
+              <NavLink to={`/users/${user._id}`} className='text-decoration-none text-dark'  > 
               User
               </NavLink>
             </li> 
