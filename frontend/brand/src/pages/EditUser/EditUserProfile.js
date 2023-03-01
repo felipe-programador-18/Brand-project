@@ -56,8 +56,7 @@ const EditProfile = () => {
         }
 
         const formdata = new FormData()
-        const userFormData = Object.keys(userData).forEach((key) => formdata.append(key, userFormData[key]))
-
+        const userFormData = Object.keys(userData).forEach((key) => formdata.append(key, userData[key]))
         formdata.append("user", userFormData)
         await dispatch(UpdateProfile(formdata))
 
@@ -69,7 +68,7 @@ const EditProfile = () => {
     }
 
     const HandleFile = (e) => {
-       const image = e.target.file[0]
+       const image = e.target.files[0]
        setPreviewname(image)
        setProfileImage(image)
     }

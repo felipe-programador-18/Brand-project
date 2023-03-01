@@ -16,7 +16,7 @@ const initialState = {
 // to get work together with my servicepublic
 export const PublicProduct = createAsyncThunk("product/public", 
  async(product,thunkAPI) => {
-    const token = thunkAPI.getState().auth.user.token
+    const token = thunkAPI.getState().auth.user.token;
     const data= await ProductService.publicProduct(product,token)
     if(data.errors){
         return thunkAPI.rejectWithValue(data.errors[0])
@@ -31,7 +31,7 @@ async(id, thunkAPI) => {
   const token = thunkAPI.getState().auth.user.token;
   const data = await ProductService.DeletedProduct(id, token)
   
-  if(data.erros){
+  if(data.errors){
     return thunkAPI.rejectWithValue(data.errors[0])
   }
   
@@ -50,8 +50,8 @@ async(id, thunkAPI) => {
 //to create my edit slice....
 export const EditProductBrand = createAsyncThunk("product/edit" ,
  async(ProductDate, thunkAPI) => {
-  const token = thunkAPI.getState().auth.user.token
-  const data = await ProductService.EditProduct({title: ProductDate.title},ProductDate.id,token)
+  const token = thunkAPI.getState().auth.user.token;
+  const data = await ProductService.EditProduct({name: ProductDate.name},ProductDate.id,token)
   
   if(data.errors){
     return thunkAPI.rejectWithValue(data.errors[0])
@@ -64,7 +64,7 @@ export const EditProductBrand = createAsyncThunk("product/edit" ,
 // to get Product id
 export const getUserProductId = createAsyncThunk("product/productuserid", 
 async(id, thunkAPI) => {
-  const token = thunkAPI.getState().auth.user.token
+  const token = thunkAPI.getState().auth.user.token;
   const data = await ProductService.getUserId(id, token)
   return data;
 })

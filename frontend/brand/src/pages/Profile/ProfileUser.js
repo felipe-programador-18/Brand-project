@@ -25,13 +25,13 @@ const ProfileUser = () => {
  const {user, loading} = useSelector((state) => state.user)
  const {user:userAuth} = useSelector((state) => state.auth)
  
- const {product,
+ const {products,
   loading: loadingProduct,
   message: messageProduct,
   error: errorProduct
  } = useSelector((state) => state.product)
 
- console.log("testing product here", product)
+ console.log("testing product here", products)
 
  const [name, setName] = useState("")
  const [image, setImage] = useState("")
@@ -131,8 +131,8 @@ if(loading) {
   return <p>Loading Posts .....</p>
 }
 
-return ( <div className='text-center' >
-  <div className='text-center'>
+return ( <div className='d-flex flex-column' >
+  <div className=''>
     {user.ProfileImage && (
      <img className=''  src={`${uploadsProducts}/users/${user.ProfileImage}`}  
      alt={user.name} />
@@ -156,10 +156,10 @@ return ( <div className='text-center' >
 
   
     <label>
-    <span class="badge badge-light">Title Of The Product</span>
+    <span class="badge badge-dark">Title Of The Product</span>
      <input 
       type="text"  
-      value={name | ""}
+      value={name || ""}
       required
       onChange={(e) => setName(e.target.value)}
       placeholder='Insert a Title...'
@@ -167,10 +167,10 @@ return ( <div className='text-center' >
      </label>
   
      <label>
-      <span className="badge badge-light" >To add an Image</span>
+      <p className="text-dark badge-dark" >To add an Image</p>
       <input 
       type="file"  
-      value ={HandleFile}
+      onChange={HandleFile}
       />
      </label>
      
@@ -183,7 +183,7 @@ return ( <div className='text-center' >
   </div>  
 
 
-  <div className='text-decoration-none' ref={EditProfileUser}> 
+  <div className='  text-decoration-none' ref={EditProfileUser}> 
     <p>Editing:</p>
      {editImage &&(<>
      <img src={`${uploadsProducts}/product/${editImage}`} alt={editImage} />
@@ -192,12 +192,13 @@ return ( <div className='text-center' >
 
      <form onSubmit={HandMyUpdate} >
       <input type="text" 
-       className='text-capitalize'
+       className='m-auto text-capitalize'
        placeholder="edit your title:"
        value ={editTitle || ""}
        onChange={(e) => setEditTitle(e.target.value)}
       />
-      <input type='text' value='update....' />
+      <input className='m-auto' type='text' value='update' />
+      
       <button onClick={HandCanEdit} className='btn text-capitalize btn-dark text-light' >
        Cancel Edit
       </button>
@@ -211,8 +212,8 @@ return ( <div className='text-center' >
     <div className='' >
       <h1>Product Created!</h1>
        <div>
-        {product && product.map((products) => (
-          <div key={products._id} >
+        {products && products.map((product) => (
+          <div key={product._id} >
 
             {product.image && (
               <img src={`${uploadsProducts}/product/${product.image}`} alt={product.name} />
@@ -230,7 +231,7 @@ return ( <div className='text-center' >
           </div>
         )) }
 
-      {product.length === 0 && <p className='text-capitalize' >anyone picture here.</p> }
+      {products.length === 0 && <p className='text-capitalize' >anyone picture here.</p> }
        </div>
     </div>
 </div>)
