@@ -76,7 +76,7 @@ const LoginUser = () => {
    {!loading && <input  className='text-center m-auto d-flex bg-success text-light' type='submit' value='Enter' /> }
    {loading && <input className='m-auto d-flex btn-dark' type='submit' disabled  value='wait...' /> }
 
-   {error && <MessageError msg={error} type='error' /> }
+   {error && <MessageError role="alert" msg={error} type='error' /> }
   
   </form>
   

@@ -42,7 +42,11 @@ const ProfileUser = () => {
  
  const [editId, setEditId] = useState("")
  const[editImage, setEditImage] = useState("")
- const [editTitle, setEditTitle ] = useState("")
+ const [editName, setEditName ] = useState("")
+ const [editDescribe,setEditDescribe] = useState("")
+ const [editPrice, setEditPrice] = useState(0)
+ const [editCategory, setEditCategory] = useState("")
+ const [editInventory, setEditInventory] = useState("")
 
  const ProductUser = useRef()
  const EditProfileUser = useRef()
@@ -67,7 +71,12 @@ useEffect(() => {
   e.preventDefault()
   const photoData = {
    name, 
-   image
+   image,
+   price,
+   describe,
+   category,
+   inventory,
+   
   }
 
   const ProductDate = new FormData()
@@ -78,6 +87,7 @@ useEffect(() => {
   ProductDate.append("product", ProductformDate)
   dispatch(PublicProduct(ProductDate))
   setName("")
+  setDescribe("")
   
   resetComponent()
 }
@@ -104,8 +114,12 @@ const HandMyUpdate = (e) => {
   e.preventDefault()
 
   const ProductPhoto = {
-    title: editTitle,
-    id: editId
+    name: editName,
+    id: editId,
+    describe: editDescribe,
+    price: editPrice,
+    category: editCategory,
+    inventory: editInventory
   }
   dispatch(EditProductBrand(ProductPhoto))
   resetComponent()
@@ -118,7 +132,7 @@ const HandEdit = (product) => {
   }
 
   setEditId(product._id)
-  setEditTitle(product.name)
+  setEditName(product.name)
   setEditImage(product.image)
  }
  
@@ -147,7 +161,7 @@ return ( <div className='d-flex flex-column' >
  
  {id === userAuth._id && (<> 
 
- <div ref={ProductUser} >  
+ <div className='' ref={ProductUser} >  
    <form onSubmit={HandleSubmit} >
   
     <label>
@@ -165,6 +179,18 @@ return ( <div className='d-flex flex-column' >
       placeholder='Insert a Title...'
      />
      </label>
+
+     <label>
+    <span> Describe your product </span>
+     <input 
+      type="text"
+      value={describe|| ""}
+      required
+      placeholder='Describe your product' 
+      onChange={(e) => setDescribe(e.target.value)}
+       />
+     </label>
+
   
      <label>
       <p className="text-dark badge-dark" >To add an Image</p>
@@ -172,6 +198,38 @@ return ( <div className='d-flex flex-column' >
       type="file"  
       onChange={HandleFile}
       />
+     </label>
+
+     <label>
+     <span> Category of Product </span>
+     <input 
+      type="text"
+      value={category|| ""}
+      required
+      placeholder='Category of Product' 
+      onChange={(e) => setCategory(e.target.value)}
+       />
+     </label>
+
+     <label>
+      <span>Price of Product</span>
+      <input 
+       type="number" 
+       placeholder='To add price on product'
+       value={price || ""}
+       required  
+       onChange={(e) => setPrice(e.target.value)}/>
+     </label>
+
+
+     <label>
+      <span>Price of Product</span>
+      <input 
+       type="number" 
+       placeholder='Inventary of product'
+       value={inventory || ""}
+       required  
+       onChange={(e) => setInventory(e.target.value)}/>
      </label>
      
      {!loadingProduct &&  <input type='submit' value='Public' /> }
@@ -194,8 +252,8 @@ return ( <div className='d-flex flex-column' >
       <input type="text" 
        className='m-auto text-capitalize'
        placeholder="edit your title:"
-       value ={editTitle || ""}
-       onChange={(e) => setEditTitle(e.target.value)}
+       value ={editName || ""}
+       onChange={(e) => setEditName(e.target.value)}
       />
       <input className='m-auto' type='text' value='update' />
       
