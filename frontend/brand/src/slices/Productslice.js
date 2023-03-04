@@ -3,11 +3,11 @@ import ProductService from "../services/Product.service"
 
 
 const initialState = {
-    loading: null,
-    error: false,
-    success:false,
     products:[],
     product:{},
+    loading: false,
+    error: false,
+    success:false,
     message:null
 }
 
@@ -57,7 +57,7 @@ export const EditProductBrand = createAsyncThunk("product/edit" ,
     return thunkAPI.rejectWithValue(data.errors[0])
   }
 
-  return data
+  return data;
  } )
 
 
@@ -178,7 +178,7 @@ export const productSlice = createSlice({
           if(product._id === action.payload.product._id){
            return product.name = action.payload.product.name
           }
-          return product
+          return product;
         })
         state.message = action.payload.message;
       })
