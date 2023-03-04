@@ -172,11 +172,11 @@ export const productSlice = createSlice({
       })
       .addCase(EditProductBrand.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
         state.success = true;
+        state.error = null;
         state.products.map((product) => {
-          if(product._id === action.payload.product.id){
-           return product.title = action.payload.product.title
+          if(product._id === action.payload.product._id){
+           return product.name = action.payload.product.name
           }
           return product
         })
