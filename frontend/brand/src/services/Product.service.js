@@ -51,7 +51,7 @@ export const EditProduct = async (data, id, token) =>{
     const configReq = CreateAllRequest("PUT",data, token)
 
     try {
-     const res = await fetch(api +"/product/" +id, configReq)
+     const res = await fetch(api + "/product/" + id, configReq)
      .then((res) => res.json())
      .catch((err) => err)
      return res;
@@ -67,7 +67,7 @@ export const getUserId =  async(id,token) => {
      
     const configReq= CreateAllRequest("GET",null,token)
     try {
-      const res = await fetch(api +"/product/"+id,configReq)
+      const res = await fetch(api + "/product/"+id,configReq)
       .then((res) =>res.json())
       .catch((err) => err)
       return res;
