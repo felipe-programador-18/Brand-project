@@ -11,7 +11,8 @@ import MessageError from '../../components/Message'
 
 const EditProfile = () => {
     const dispatch = useDispatch() 
-  
+    const {user,message, loading, error,} = useSelector((state) => state.user)
+    
     const [name, setName] = useState("")
     const[email, setEmail]= useState("")
     const [password, setPassword] = useState("")
@@ -20,7 +21,6 @@ const EditProfile = () => {
 
     const [previewImage, setPreviewname] = useState("") 
 
-    const {user,message, loading, error,} = useSelector((state) => state.user)
 
     //to loading my profileUser
     useEffect(() =>{
@@ -30,9 +30,9 @@ const EditProfile = () => {
     // fill field!!
     useEffect(() => {
      if(user) {
-      setName(name)
-      setEmail(email)
-      setBio(bio)
+       setName(user.name)
+       setEmail(user.email)
+       setBio(user.bio)
      }
 
     },[user])
@@ -46,13 +46,13 @@ const EditProfile = () => {
         }
        
         if(profileImage){
-            userData.profileImage = profileImage
+            userData.profileImage = profileImage;
         }
         if(bio){
-            userData.bio = bio
+            userData.bio = bio;
         }
         if(password){
-           userData.password = password
+           userData.password = password;
         }
 
         const formdata = new FormData()
@@ -84,7 +84,7 @@ const EditProfile = () => {
         alt={user.name} />
     )}
    
-   <div class="h4 pb-2 mb-4 text-danger border-bottom border-dark">
+   <div className="h4 pb-2 mb-4 text-danger border-bottom border-success">
    </div>
    
    <form onSubmit={HandleSubmit} >
@@ -103,25 +103,26 @@ const EditProfile = () => {
 
 
 
-         <div class="mb-3">
-          <label for="formFile" class="form-label">
+         <div className="mb-3">
+          <label  className="form-label">
             <span>Profile Image:</span>
           </label>
-          <input class="form-control" type="file" onChange={HandleFile} />
+          <input className="form-control" type="file" onChange={HandleFile} />
         </div>    
 
-       <label>
-        <span>Bio:</span>
+       <label className='mx-2'>
+        <span >Bio:</span>
         <input 
          type="text"
+         className='mx-2'
          placeholder='Profile description.'
          onChange={(e) => setBio(e.target.value)}
          value={bio || ""}
          />
        </label>
         
-        <label>
-            <span>Quer alterar sua Senha?</span>
+        <label >
+            <span className='text-capitalize' >are you want to change password?</span>
             <input 
             type="password"
              placeholder='Type your new password.' 
@@ -130,13 +131,12 @@ const EditProfile = () => {
              />
         </label>
 
-        <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger">
-                   Dangerous heading
+        <div className="h4 pb-2 mb-4 text-danger border-bottom border-success">
         </div>
 
 
-        {!loading && <input type='submit' value='Update'  /> }
-        {loading && (<input  type='submit' disabled value='Wait..'  />)  }
+        {!loading && <input type='submit' className='btn btn-dark m-auto' value='Update'  /> }
+        {loading && <input  type='submit' disabled value='Wait..'  /> }
 
         {error && <MessageError  type='error' msg={error}/> } 
         
@@ -145,28 +145,7 @@ const EditProfile = () => {
    </form>
 
 
-  <div class="mb-3">
-  <label for="formFile" class="form-label">Default file input example</label>
-  <input class="form-control" type="file" id="formFile"/>
-</div>
-<div class="mb-3">
-  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-  <input class="form-control" type="file" id="formFileMultiple" multiple/>
-</div>
-<div class="mb-3">
-  <label for="formFileDisabled" class="form-label">Disabled file input example</label>
-  <input class="form-control" type="file" id="formFileDisabled" disabled/>
-</div>
-<div class="mb-3">
-  <label for="formFileSm" class="form-label">Small file input example</label>
-  <input class="form-control form-control-sm" id="formFileSm" type="file"/>
-</div>
-<div>
-  <label for="formFileLg" class="form-label">Large file input example</label>
-  <input class="form-control form-control-lg" id="formFileLg" type="file"/>
-</div>
-
-
+  
 
     </Container >)
 
