@@ -14,7 +14,6 @@ import {resetMessage,
 import {useDispatch, useSelector} from 'react-redux'
 import { GetUserBy } from '../../slices/Userslice'
 
-import Container from 'react-bootstrap/Container'
 
 
 
@@ -36,6 +35,7 @@ const ProfileUser = () => {
  const [name, setName] = useState("")
  const [image, setImage] = useState("")
  const [describe, setDescribe] = useState("")
+ const [ brand, setBrand] = useState("")
  const [price, setPrice] = useState(0)
  const [ category, setCategory] = useState("")
  const [inventory, setInventory] = useState(0)
@@ -76,7 +76,7 @@ useEffect(() => {
    describe,
    category,
    inventory,
-   
+   brand
   }
 
   const ProductDate = new FormData()
@@ -130,10 +130,15 @@ const HandEdit = (product) => {
   if( EditProfileUser.current.classList.contains("hide")){
    ShowOrHide()
   }
-
+  
   setEditId(product._id)
   setEditName(product.name)
   setEditImage(product.image)
+  setEditCategory(product.category)
+  setEditDescribe(product.describe)
+  setEditPrice(product.price)
+  setEditInventory(product.inventory)
+  
  }
  
 //verify if i form called 
