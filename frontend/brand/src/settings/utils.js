@@ -31,5 +31,5 @@ export const CreateAllRequest = (method, data, token=null , image=null ) => {
      config.headers.Authorization = `Bearer ${token}`
     }
    
-   return config
+   return config;
 }
