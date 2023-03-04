@@ -61,8 +61,8 @@ const ProfileUser = () => {
  
 // to manage my rending with useEffect
 useEffect(() => {
-  dispatch(getProductUser(id))
   dispatch(GetUserBy(id))
+  dispatch(getProductUser(id))
 },[dispatch, id])
 
 
