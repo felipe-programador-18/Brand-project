@@ -104,7 +104,7 @@ const getUserId = async(req,res) => {
 const UpdateProduct = async (req,res) => {
   
   const {id} = req.params;
-  const{name} = req.body;
+  const{name, price, describe, inventory, brand, category } = req.body;
   
   const reqUser = req.user
   const PhotoProduct = await Product.findById(id)
@@ -127,6 +127,21 @@ const UpdateProduct = async (req,res) => {
 
     if(name){
       PhotoProduct.name = name
+    }
+    if(price){
+      PhotoProduct.price = price
+    }
+    if(describe){
+      PhotoProduct.describe = describe
+    }
+    if(inventory){
+      PhotoProduct.inventory = inventory
+    }
+    if(brand) {
+      PhotoProduct.brand = brand
+    }
+    if(category) {
+      PhotoProduct.category = category
     }
     await PhotoProduct.save()
     
