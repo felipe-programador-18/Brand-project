@@ -11,16 +11,16 @@ const ProductPhoto = ({product}) => {
     return(<Container>
      {product.image && ( 
         <img src={`${uploadsProducts}/product/${product.image}`} 
-         alt={product.title}
+         alt={product.name}
          />
       )}  
      
-     <h2>{product.title} </h2> 
+     <h2>{product.name} </h2> 
      
      <p><span>
         Publish by: 
         <Link to={`/users/${product.userId}`} > 
-           {product.Username}
+           {product.UserName}
          </Link>  
         </span>
      </p>
