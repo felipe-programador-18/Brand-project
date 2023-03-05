@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 import {Link, useParams} from  'react-router-dom'
+import Container from 'react-bootstrap/esm/Container'
 
 import { uploadsProducts } from '../../settings/utils'
 import MessageError from '../../components/Message'
@@ -14,6 +15,8 @@ import {resetMessage,
 import {useDispatch, useSelector} from 'react-redux'
 import { GetUserBy } from '../../slices/Userslice'
 
+
+import "./profile.css"
 
 
 
@@ -150,13 +153,13 @@ if(loading) {
   return <p>Loading Posts .....</p>
 }
 
-return ( <div className='d-flex flex-column' >
-  <div className=''>
+return ( <Container id='profile' >
+  <div className='profile-header'>
     {user.ProfileImage && (
      <img className=''  src={`${uploadsProducts}/users/${user.ProfileImage}`}  
      alt={user.name} />
     )}
-   <div className='text-center' >
+   <div className='profile-description' >
     <h2>{user.name}</h2>
      <p>{user.bio}</p> 
    </div>
@@ -166,16 +169,11 @@ return ( <div className='d-flex flex-column' >
  
  {id === userAuth._id && (<> 
 
- <div className='' ref={ProductUser} >  
+ <div className='new-photo' ref={ProductUser} >  
    <form onSubmit={HandleSubmit} >
   
     <label>
-     <input type="text" />
-    </label>
-
-  
-    <label>
-    <span class="badge badge-dark">Title Of The Product</span>
+    <span class="text-dark border-dark ">Title Of The Product</span>
      <input 
       type="text"  
       value={name || ""}
@@ -198,7 +196,7 @@ return ( <div className='d-flex flex-column' >
 
   
      <label>
-      <p className="text-dark badge-dark" >To add an Image</p>
+       To add an Image
       <input 
       type="file"  
       onChange={HandleFile}
@@ -209,7 +207,7 @@ return ( <div className='d-flex flex-column' >
      <span> Category of Product </span>
      <input 
       type="text"
-      value={category|| ""}
+      value={category || ""}
       required
       placeholder='Category of Product' 
       onChange={(e) => setCategory(e.target.value)}
@@ -228,7 +226,7 @@ return ( <div className='d-flex flex-column' >
 
 
      <label>
-      <span>Price of Product</span>
+      <span>Inventory of Product</span>
       <input 
        type="number" 
        placeholder='Inventary of product'
@@ -246,7 +244,7 @@ return ( <div className='d-flex flex-column' >
   </div>  
 
 
-  <div className='  text-decoration-none' ref={EditProfileUser}> 
+  <div className='edit-photo hide' ref={EditProfileUser}> 
     <p>Editing:</p>
      {editImage &&(<>
      <img src={`${uploadsProducts}/product/${editImage}`} alt={editImage} />
@@ -255,14 +253,14 @@ return ( <div className='d-flex flex-column' >
 
      <form onSubmit={HandMyUpdate} >
       <input type="text" 
-       className='m-auto text-capitalize'
+       className='text-capitalize'
        placeholder="edit your title:"
        value ={editName || ""}
        onChange={(e) => setEditName(e.target.value)}
       />
-      <input className='m-auto' type='text' value='update' />
+      <input className='' type='text' value='update' />
       
-      <button onClick={HandCanEdit} className='btn text-capitalize btn-dark text-light' >
+      <button onClick={HandCanEdit} className='cancel-btn' >
        Cancel Edit
       </button>
       </form>
@@ -272,32 +270,32 @@ return ( <div className='d-flex flex-column' >
  
  </>)}
 
-    <div className='' >
+    <div className='user-photo'>
       <h1>Product Created!</h1>
-       <div>
+       <div className='photos-container'>
         {products && products.map((product) => (
-          <div key={product._id} >
+          <div className='photo' key={product._id} >
 
             {product.image && (
               <img src={`${uploadsProducts}/product/${product.image}`} alt={product.name} />
             )}
 
-            {id === userAuth._id ? (<div>
-                 <Link to={`/photos/${product._id}`} >
+            {id === userAuth._id ? (<div className='actions' >
+                 <Link to={`/product/${product._id}`} >
                    <BsFillEyeFill/>  
                 
                  </Link> 
                    <BsPencilFill onClick={() => HandEdit(product) } />
                    <BsXLg onClick={() => HandleDeleted(product._id) } />
             
-            </div>): (<Link className='btn' to={`/photos/${product._id}`} >See.</Link> )}
+            </div>): (<Link className='btn' to={`/product/${product._id}`} >See.</Link> )}
           </div>
         )) }
 
       {products.length === 0 && <p className='text-capitalize' >anyone picture here.</p> }
        </div>
     </div>
-</div>)
+</Container>)
 }
 
 export default ProfileUser
