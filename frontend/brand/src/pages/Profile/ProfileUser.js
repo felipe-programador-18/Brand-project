@@ -155,8 +155,8 @@ if(loading) {
 
 return ( <Container id='profile' >
   <div className='profile-header'>
-    {user.ProfileImage && (
-     <img className=''  src={`${uploadsProducts}/users/${user.ProfileImage}`}  
+    {user.profileImage && (
+     <img className=''  src={`${uploadsProducts}/users/${user.profileImage}`}  
      alt={user.name} />
     )}
    <div className='profile-description' >

@@ -33,7 +33,7 @@ function App() {
      <div className='container' >
 
       <Routes>
-        <Route path='/' element={ auth ? <Home/> : 
+        <Route path='/' element={ auth ? "" : 
         <Navigate to='/login' />  } />
         
         <Route path='/profile' element={ auth ? <EditProfile/> :

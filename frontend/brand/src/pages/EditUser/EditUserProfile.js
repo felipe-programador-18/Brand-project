@@ -19,7 +19,7 @@ const EditProfile = () => {
     const [profileImage, setProfileImage] = useState("")
     const [bio, setBio] = useState("")
 
-    const [previewImage, setPreviewname] = useState("") 
+    const [previewImage, setPreviewImage] = useState("") 
 
 
     //to loading my profileUser
@@ -69,7 +69,7 @@ const EditProfile = () => {
 
     const HandleFile = (e) => {
        const image = e.target.files[0]
-       setPreviewname(image)
+       setPreviewImage(image)
        setProfileImage(image)
     }
     
@@ -78,7 +78,7 @@ const EditProfile = () => {
      <h2>Edit your Dates.</h2>
      <p className='text-capitalize' >Adding a picture and tell a more about yourself.</p>
   
-    {(user.profileImage|| user.previewImage) && (
+    {(user.profileImage || user.previewImage) && (
         <img className=' text-center rounded-circle w-25 h-25 ' src={ previewImage? URL.createObjectURL(previewImage): 
           `${uploadsProducts}/users/${user.profileImage}`}
         alt={user.name} />
